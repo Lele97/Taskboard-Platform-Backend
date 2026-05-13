@@ -12,3 +12,20 @@ security:
     jwt:
         secret: c3VwZXItc2VjcmV0LWtleS10aGF0LWlzLWF0LWxlYXN0LTMyLWJ5dGVz
         expiration-seconds: 3600
+
+management:
+    info:
+        env:
+            enabled: true
+    endpoints:
+        web:
+            exposure:
+                include: health,info,prometheus
+    endpoint:
+        prometheus:
+            enabled: true
+info:
+    app:
+        name: auth-service
+        version: 0.0.1-SNAPSHOT
+        description: Taskboard auth microservice backend
