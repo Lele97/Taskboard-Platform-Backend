@@ -1,31 +1,31 @@
 spring:
-    application:
-        name: auth-service
-    data:
-      mongodb:
-          uri: ${SPRING_DATA_MONGODB_URI:mongodb://localhost:27017/taskboard-auth}
+  application:
+    name: auth-service
+  data:
+    mongodb:
+      uri: ${SPRING_DATA_MONGODB_URI:mongodb://localhost:27017/taskboard-auth}
 
 server:
-    port: 8081
+  port: 8081
 
 security:
-    jwt:
-        secret: c3VwZXItc2VjcmV0LWtleS10aGF0LWlzLWF0LWxlYXN0LTMyLWJ5dGVz
-        expiration-seconds: 3600
+  jwt:
+    secret: ${SECURITY_JWT_SECRET:c3VwZXItc2VjcmV0LWtleS10aGF0LWlzLWF0LWxlYXN0LTMyLWJ5dGVz}
+    expiration-seconds: ${SECURITY_JWT_EXPIRATION_SECONDS:3600}
 
 management:
-    info:
-        env:
-            enabled: true
-    endpoints:
-        web:
-            exposure:
-                include: health,info,prometheus
-    endpoint:
-        prometheus:
-            enabled: true
+  info:
+    env:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    prometheus:
+      enabled: true
 info:
-    app:
-        name: auth-service
-        version: 0.0.1-SNAPSHOT
-        description: Taskboard auth microservice backend
+  app:
+    name: ${SPRING_APPLICATION_NAME:auth-service}
+    version: 0.0.1-SNAPSHOT
+    description: Taskboard auth microservice backend

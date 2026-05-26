@@ -17,8 +17,8 @@ server:
 
 security:
   jwt:
-    secret: c3VwZXItc2VjcmV0LWtleS10aGF0LWlzLWF0LWxlYXN0LTMyLWJ5dGVz
-    expiration-seconds: 3600
+    secret: ${SECURITY_JWT_SECRET:c3VwZXItc2VjcmV0LWtleS10aGF0LWlzLWF0LWxlYXN0LTMyLWJ5dGVz}
+    expiration-seconds: ${SECURITY_JWT_EXPIRATION_SECONDS:3600}
 
 management:
   info:
@@ -33,6 +33,6 @@ management:
       enabled: true
 info:
   app:
-    name: project-service
+    name: ${SPRING_APPLICATION_NAME:project-service}
     version: 0.0.1-SNAPSHOT
     description: Taskboard project microservice backend

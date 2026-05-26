@@ -34,7 +34,9 @@ public class CorsConfig {
                 "http://localhost:[*]",
                 "https://localhost:[*]",
                 "http://127.0.0.1:[*]",
-                "https://127.0.0.1:[*]"
+                "https://127.0.0.1:[*]",
+                "http://taskboard.local",
+                "https://taskboard.local"
         ));
         corsConfig.setMaxAge(3600L);
         corsConfig.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));

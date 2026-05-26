@@ -26,6 +26,6 @@ management:
       enabled: true
 info:
   app:
-    name: gateway-service
+    name: ${SPRING_APPLICATION_NAME:gateway-service}
     version: 0.0.1-SNAPSHOT
     description: Taskboard gateway microservice backend

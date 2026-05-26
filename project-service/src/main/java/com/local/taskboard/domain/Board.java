@@ -13,12 +13,12 @@ import java.time.Instant;
 /**
  * Entity class representing a board in the TaskBoard platform.
  * A board represents a collection of cards/tasks organized in columns.
- * 
+ *
  * <p>
  * This class maps to the "board" collection in MongoDB and contains
  * information about a board including its name, description, owner, and
  * timestamps.
- * 
+ *
  * @author TaskBoard Platform Team
  * @version 1.0
  * @since 1.0

@@ -1,16 +1,16 @@
 package com.local.taskboard.controller;
 
+import com.local.taskboard.exception.BadCredentialsException;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
-import com.local.taskboard.exception.BadCredentialsException;
 import reactor.core.publisher.Mono;
 
 /**
@@ -20,14 +20,14 @@ import reactor.core.publisher.Mono;
  * handling all
  * authentication-related HTTP requests and forwarding them to the appropriate
  * microservice.
- * 
+ *
  * <p>
  * It provides endpoints for:
  * <ul>
  * <li>User registration</li>
  * <li>Authentication token generation</li>
  * </ul>
- * 
+ *
  * @author TaskBoard Platform Team
  * @version 1.0
  * @since 1.0
