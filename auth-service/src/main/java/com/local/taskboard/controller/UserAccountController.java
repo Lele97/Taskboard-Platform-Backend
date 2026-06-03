@@ -1,9 +1,9 @@
 package com.local.taskboard.controller;
 
 import com.local.taskboard.service.JwtService;
+import com.local.taskboard.service.UserAccountService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
-import com.local.taskboard.service.UserAccountService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -38,14 +38,14 @@ public class UserAccountController {
 
     private final UserAccountService userAccountService;
     private final AuthenticationManager authenticationManager;
-    private final JwtService jwtService;// la config la aggiungiamo dopo
+    private final JwtService jwtService;
 
     public record RegisterRequest(@NotBlank String username,
-            @NotBlank String password) {
+                                  @NotBlank String password) {
     }
 
     public record LoginRequest(@NotBlank String username,
-            @NotBlank String password) {
+                               @NotBlank String password) {
     }
 
     public record UserInfoResponse(String username, Set<String> roles) {
@@ -55,7 +55,7 @@ public class UserAccountController {
     }
 
     public UserAccountController(UserAccountService userAccountService, AuthenticationManager authenticationManager,
-            JwtService jwtService) {
+                                 JwtService jwtService) {
         this.userAccountService = userAccountService;
         this.authenticationManager = authenticationManager;
         this.jwtService = jwtService;
@@ -72,7 +72,7 @@ public class UserAccountController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@Valid @RequestBody RegisterRequest req) {
+    public ResponseEntity<String> register(@Valid @RequestBody RegisterRequest req) {
         if (userAccountService.existsByUsername(req.username())) {
             return ResponseEntity.badRequest().body("Username already exists");
         }
@@ -81,7 +81,7 @@ public class UserAccountController {
     }
 
     @PostMapping("/token")
-    public ResponseEntity<?> token(@Valid @RequestBody LoginRequest req) {
+    public ResponseEntity<TokenResponse> token(@Valid @RequestBody LoginRequest req) {
         var authToken = new UsernamePasswordAuthenticationToken(
                 req.username(), req.password());
         var auth = authenticationManager.authenticate(authToken);

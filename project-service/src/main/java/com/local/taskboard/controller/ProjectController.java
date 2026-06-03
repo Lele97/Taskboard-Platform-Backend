@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.*;
 import java.time.Instant;
 import java.util.List;
 
+/**
+ * REST controller for managing projects, boards, and cards.
+ * Exposes endpoints for CRUD operations on project-related entities.
+ */
 @RestController
 @RequestMapping("/api/projects")
 public class ProjectController {
@@ -33,7 +37,7 @@ public class ProjectController {
     }
 
     @GetMapping("/boards")
-    public List<Board> findAllBoars() {
+    public List<Board> findAllBoards() {
         return boardService.findAll();
     }
 
@@ -46,6 +50,11 @@ public class ProjectController {
     @PostMapping("/boards")
     public ResponseEntity<Board> save(@Valid @RequestBody ProjectController.BoardRequest board) {
         return new ResponseEntity<>(boardService.save(board), HttpStatus.OK);
+    }
+
+    @GetMapping("/boards/user/{user}")
+    public ResponseEntity<List<Board>> getBoardsByUser(@PathVariable String user) {
+        return new ResponseEntity<>(boardService.findAllByUser(user), HttpStatus.OK);
     }
 
     @GetMapping("/board/{boardId}")
